@@ -301,42 +301,50 @@ local function u_game_speed_cycle(forward)
 	u_show_help_text("Game " .. (u_game_speed == 0 and "Paused" or "Speed is " .. u_game_speed * 10 .. "%%"))
 end
 
+local u_keybinds = {
+	{ handler = u_fix_char_vehicle, modifier = u_controls.ctrl, key = u_controls.n1 };
+	{ handler = u_free_camera_toggle, modifier = u_controls.ctrl, key = u_controls.n2 };
+	{ handler = u_invulnerability_toggle, modifier = u_controls.ctrl, key = u_controls.n3 };
+	{ handler = u_notoriety_toggle, modifier = u_controls.ctrl, key = u_controls.n4 };
+	{ handler = u_super_attacks_toggle, modifier = u_controls.ctrl, key = u_controls.n5 };
+	{ handler = u_super_cooldown_toggle, modifier = u_controls.ctrl, key = u_controls.n6 };
+	{ handler = u_super_movement_toggle, modifier = u_controls.ctrl, key = u_controls.n7 };
+	{ handler = u_game_speed_cycle, modifier = u_controls.e, key = u_controls.n1, args = { false } };
+	{ handler = u_game_speed_cycle, modifier = u_controls.e, key = u_controls.n2, args = { true } };
+	{ handler = u_teleports_cycle, modifier = u_controls.e, key = u_controls.n3, args = { false } };
+	{ handler = u_teleports_cycle, modifier = u_controls.e, key = u_controls.n4, args = { true } };
+	{ handler = u_teleports_tp, modifier = u_controls.e, key = u_controls.n5 };
+	{ handler = u_tod_cycle, modifier = u_controls.e, key = u_controls.n6, args = { false } };
+	{ handler = u_tod_cycle, modifier = u_controls.e, key = u_controls.n7, args = { true } };
+}
+
 function u_sandbox_thread()
+	local keybinds = {}
+	for i, v in ipairs(u_keybinds) do
+		if not keybinds[v.modifier] then
+			keybinds[v.modifier] = {}
+		end
+
+		keybinds[v.modifier][v.key] = { handler = v.handler, args = v.args }
+	end
+
 	u_show_help_text("Thread Created", 10.0)
+
 	while true do
-		if player_action_is_pressed(u_controls.ctrl) then
-			if player_action_just_pressed(u_controls.n1) then
-				u_fix_char_vehicle()
-			elseif player_action_just_pressed(u_controls.n2) then
-				u_super_attacks_toggle()
-			elseif player_action_just_pressed(u_controls.n3) then
-				u_super_movement_toggle()
-			elseif player_action_just_pressed(u_controls.n4) then
-				u_super_cooldown_toggle()
-			elseif player_action_just_pressed(u_controls.n5) then
-				u_notoriety_toggle()
-			elseif player_action_just_pressed(u_controls.n6) then
-				u_free_camera_toggle()
-			elseif player_action_just_pressed(u_controls.n7) then
-				u_tod_cycle(false)
-			elseif player_action_just_pressed(u_controls.n8) then
-				u_tod_cycle(true)
-			end
-		elseif player_action_is_pressed(u_controls.e) then
-			if player_action_just_pressed(u_controls.n1) then
-				u_invulnerability_toggle()
-			elseif player_action_just_pressed(u_controls.n2) then
-				u_teleports_cycle(false)
-			elseif player_action_just_pressed(u_controls.n3) then
-				u_teleports_cycle(true)
-			elseif player_action_just_pressed(u_controls.n4) then
-				u_teleports_tp()
-			elseif player_action_just_pressed(u_controls.n5) then
-				u_game_speed_cycle(false)
-			elseif player_action_just_pressed(u_controls.n6) then
-				u_game_speed_cycle(true)
+		for modifier, keys in pairs(keybinds) do
+			if player_action_is_pressed(modifier) then
+				for key, command in pairs(keys) do
+					if player_action_just_pressed(key) then
+						if command.args and #command.args > 0 then
+							command.handler(unpack(command.args))
+						else
+							command.handler()
+						end
+					end
+				end
 			end
 		end
+
 		thread_yield()
 	end
 
