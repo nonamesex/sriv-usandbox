@@ -144,16 +144,6 @@ local function u_show_help_text(msg, duration)
 	message("[format][color:blue]uSandBox[/format]: " .. msg, duration or 2.0, false, SYNC_ALL)
 end
 
-local function u_show_player_coords()
-	local x, y, z = get_object_pos(LOCAL_PLAYER)
-	u_show_help_text(
-		"Player Coords"
-		.. "\nX: " .. x
-		.. "\nZ: " .. z
-		.. "\nY: " .. y
-	)
-end
-
 ---@param x number
 ---@param y number
 ---@param z number
