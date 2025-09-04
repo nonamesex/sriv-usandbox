@@ -173,32 +173,31 @@ end
 ---@param clamp boolean
 ---@return integer, boolean
 local function u_cycle_number(value, min, max, forward, clamp)
+	local new_value = value
+
 	if forward then
-		if value >= max then
-			if clamp then
-				return value, false
-			else
-				value = min
+		if new_value >= max then
+			if not clamp then
+				new_value = min
 			end
 		else
-			value = value + 1
+			new_value = new_value + 1
 		end
 	else
-		if min >= value then
-			if clamp then
-				return value, false
-			else
-				value = max
+		if min >= new_value then
+			if not clamp then
+				new_value = max
 			end
 		else
-			value = value - 1
+			new_value = new_value - 1
 		end
 	end
-	return value, true
+
+	return new_value, new_value ~= value
 end
 
 local function u_tod_cycle(forward)
-	u_tod_current = u_cycle_number(u_tod_current, min, #u_tod_list, forward, false)
+	u_tod_current = u_cycle_number(u_tod_current, 1, #u_tod_list, forward, false)
 
 	local tod = u_tod_list[u_tod_current]
 	local tod_count = u_tod_current .. "/" .. #u_tod_list .. "\n"
