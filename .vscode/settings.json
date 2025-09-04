@@ -1,0 +1,13 @@
+{
+    "Lua.workspace.library": [
+        ".include/_aliases.lua",
+        ".include/_unknowns.lua",
+        ".include/gameplay_functions.lua",
+        // ".include/interface_functions.lua",
+        ".include/game_lib.lua",
+    ],
+    "Lua.workspace.ignoreDir": [
+        ".vscode",
+        ".include",
+    ]
+}

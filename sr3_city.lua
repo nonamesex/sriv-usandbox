@@ -1,5 +1,4 @@
 --- Saints Row IV μSandBox ---
----@diagnostic disable: undefined-global
 
 local u_controls = {
 	["insert"] = "CBA_VDC_OFFHAND_GRENADE";
@@ -137,10 +136,12 @@ local u_tod_list = {
 	{ name = "dlc1_m05_tod_override", hour = 0, minute = 30 };
 }
 
-local function u_show_help_text(str, duration)
+---@param msg string
+---@param duration number Duration in seconds. Can be float value.
+local function u_show_help_text(msg, duration)
 	message_remove_all()
 	thread_yield()
-	message("[format][color:blue]uSandBox[/format]: " .. str, duration or 2.0, false, 3)
+	message("[format][color:blue]uSandBox[/format]: " .. msg, duration or 2.0, false, SYNC_ALL)
 end
 
 local function u_show_player_coords()
@@ -153,6 +154,10 @@ local function u_show_player_coords()
 	)
 end
 
+---@param x number
+---@param y number
+---@param z number
+---@param teleport_remote boolean Also teleport remote player
 local function u_teleport_player_to_coords(x, y, z, teleport_remote)
 	local tx, ty, tz = x - 1361.8663330078, y - (-818.10595703125), z - 33.073020935059
 	teleport_to_object(LOCAL_PLAYER, "nw_qm_nav", false, false, tx, tz, ty, false)
@@ -161,6 +166,12 @@ local function u_teleport_player_to_coords(x, y, z, teleport_remote)
 	end
 end
 
+---@param value integer 
+---@param min integer
+---@param max integer
+---@param forward boolean
+---@param clamp boolean
+---@return integer, boolean
 local function u_cycle_number(value, min, max, forward, clamp)
 	if forward then
 		if value >= max then
