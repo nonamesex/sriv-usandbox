@@ -1,0 +1,23 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "shell",
+      "label": "make vpp_pc",
+      "windows": {
+        "command": "${workspaceFolder}\\tools\\ThomasJepp.SaintsRow-rev133\\ThomasJepp.SaintsRow.BuildPackfile.exe",
+        "args": [
+          "sriv",
+          "${workspaceFolder}\\src",
+          "${workspaceFolder}\\dist\\sriv_usandbox.vpp_pc",
+          "/compressed:true"
+        ],
+        "options": {
+          "cwd": "${workspaceFolder}"
+        }
+      }
+    }
+  ]
+}
