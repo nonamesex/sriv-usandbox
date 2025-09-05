@@ -90,50 +90,50 @@ local u_teleports_list = {
 
 local u_tod_current = 0
 local u_tod_list = {
-	{ name = "blue_pd_tod_override", hour = 2, minute = 30 };
-	{ name = "blue_predawn_tod_override", hour = 5, minute = 0 };
-	{ name = "blue_tod_override", hour = 0, minute = 30 };
-	{ name = "classic_tod_override", hour = 16, minute = 0 };
-	{ name = "day_tod_override", hour = 13, minute = 0 };
-	{ name = "infrared_tod_override", hour = 16, minute = 0 };
-	{ name = "m00_n_tod_override", hour = 5, minute = 0 };
-	{ name = "m00_out_tod_override", hour = 5, minute = 0 };
-	{ name = "m00_tod_override", hour = 17, minute = 0 };
-	{ name = "m01_tod_override", hour = 15, minute = 30 };
-	{ name = "m01test_tod_override", hour = 21, minute = 0 };
-	{ name = "m02_tod_override", hour = 12, minute = 30 };
-	{ name = "m03_spacefox", hour = 8, minute = 0 };
-	{ name = "m06_2_tod_override", hour = 5, minute = 0 };
-	{ name = "m08_tod_override", hour = 5, minute = 0 };
-	{ name = "m15_tod_override", hour = 0, minute = 30 };
-	{ name = "m16_tod_override", hour = 2, minute = 30 };
-	{ name = "m18_tod_override", hour = 1, minute = 0 };
-	{ name = "modern_tod_override", hour = 11, minute = 0 };
-	{ name = "mothership_tod_override", hour = 5, minute = 0 };
-	{ name = "nightmare_dark_tod_override", hour = 5, minute = 0 };
-	{ name = "nm_02out_tod_override", hour = 15, minute = 0 };
-	{ name = "nm_cheat_tod_override", hour = 15, minute = 0 };
-	{ name = "nm_dark_tod_override", hour = 0, minute = 30 };
-	{ name = "nm_noon_tod_override", hour = 15, minute = 0 };
-	{ name = "nm_noonb_tod_override", hour = 15, minute = 0 };
-	{ name = "noir_tod_override", hour = 0, minute = 30 };
-	{ name = "orange_tod_override", hour = 0, minute = 30 };
-	{ name = "r_leap01_tod_override", hour = 5, minute = 0 };
-	{ name = "red_tod_override", hour = 0, minute = 30 };
-	{ name = "space_tod_override", hour = 0, minute = 30 };
-	{ name = "spacelit_tod_override", hour = 2, minute = 0 };
-	{ name = "suburbia_tod_override", hour = 13, minute = 0 };
-	{ name = "sunrise_tod_override", hour = 7, minute = 0 };
-	{ name = "sunset_tod_override", hour = 7, minute = 0 };
-	{ name = "training_tod_override", hour = 14, minute = 30 };
-	{ name = "vintage_tod_override", hour = 14, minute = 0 };
-	{ name = "violet_tod_override", hour = 0, minute = 30 };
-	{ name = "warden_tod_override_noon", hour = 14, minute = 30 };
-	{ name = "dlc1_m01_tod_override", hour = 7, minute = 0 };
-	{ name = "dlc1_m02_tod_override", hour = 13, minute = 0 };
-	{ name = "dlc1_m03_tod_override", hour = 19, minute = 30 };
-	{ name = "dlc1_m04_tod_override", hour = 1, minute = 30 };
-	{ name = "dlc1_m05_tod_override", hour = 0, minute = 30 };
+	"blue_pd_tod_override";
+	"blue_predawn_tod_override";
+	"blue_tod_override";
+	"classic_tod_override";
+	"day_tod_override";
+	"infrared_tod_override";
+	"m00_n_tod_override";
+	"m00_out_tod_override";
+	"m00_tod_override";
+	"m01_tod_override";
+	"m01test_tod_override";
+	"m02_tod_override";
+	"m03_spacefox";
+	"m06_2_tod_override";
+	"m08_tod_override";
+	"m15_tod_override";
+	"m16_tod_override";
+	"m18_tod_override";
+	"modern_tod_override";
+	"mothership_tod_override";
+	"nightmare_dark_tod_override";
+	"nm_02out_tod_override";
+	"nm_cheat_tod_override";
+	"nm_dark_tod_override";
+	"nm_noon_tod_override";
+	"nm_noonb_tod_override";
+	"noir_tod_override";
+	"orange_tod_override";
+	"r_leap01_tod_override";
+	"red_tod_override";
+	"space_tod_override";
+	"spacelit_tod_override";
+	"suburbia_tod_override";
+	"sunrise_tod_override";
+	"sunset_tod_override";
+	"training_tod_override";
+	"vintage_tod_override";
+	"violet_tod_override";
+	"warden_tod_override_noon";
+	"dlc1_m01_tod_override";
+	"dlc1_m02_tod_override";
+	"dlc1_m03_tod_override";
+	"dlc1_m04_tod_override";
+	"dlc1_m05_tod_override";
 }
 
 ---@param msg string
@@ -189,14 +189,13 @@ end
 local function u_tod_cycle(forward)
 	u_tod_current = u_cycle_number(u_tod_current, 1, #u_tod_list, forward, false)
 
-	local tod = u_tod_list[u_tod_current]
+	local tod_name = u_tod_list[u_tod_current]
 	local tod_count = u_tod_current .. "/" .. #u_tod_list .. "\n"
 
 	mission_override_clear_all_temp()
-	set_time_of_day(tod.hour, tod.minute)
-	mission_override_push_temp(tod.name .. ".todx")
+	mission_override_push_temp(tod_name .. ".todx")
 
-	u_show_help_text(tod_count .. tod.name, 1.0)
+	u_show_help_text(tod_count .. tod_name, 1.0)
 end
 
 local u_super_attacks = true
