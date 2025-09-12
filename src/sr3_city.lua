@@ -206,6 +206,24 @@ local function u_tod_cycle(forward)
 	u_show_help_text(tod_count .. tod_name, 1.0)
 end
 
+local u_weather_current = 0
+local u_weather_names = {
+	"Clear Skies",
+	"Warden",
+	"City Takeover",
+	"Alien Zone"
+}
+local function u_weather_cycle(forward)
+	u_weather_current = u_cycle_number(u_weather_current, 1, #u_weather_names, forward, false)
+
+	local weather_name = u_weather_names[u_weather_current]
+	local weather_count = u_weather_current .. "/" .. #u_weather_names .. "\n"
+
+	set_weather(u_weather_current - 1, true)
+
+	u_show_help_text(weather_count .. weather_name, 1.0)
+end
+
 local u_super_attacks = true
 local function u_super_attacks_toggle()
 	u_super_attacks = not u_super_attacks
@@ -373,6 +391,8 @@ local u_keybinds = {
 	{ handler = u_teleports_tp, modifier = u_controls.e, key = u_controls.n5 };
 	{ handler = u_tod_cycle, modifier = u_controls.e, key = u_controls.n6, args = { false } };
 	{ handler = u_tod_cycle, modifier = u_controls.e, key = u_controls.n7, args = { true } };
+	{ handler = u_weather_cycle, modifier = u_controls.r, key = u_controls.n6, args = { false } };
+	{ handler = u_weather_cycle, modifier = u_controls.r, key = u_controls.n7, args = { true } };
 	{ handler = u_notoriety_cycle, modifier = u_controls.r, key = u_controls.n1, args = {false} };
 	{ handler = u_notoriety_cycle, modifier = u_controls.r, key = u_controls.n2, args = {true} };
 	{ handler = u_notoriety_toggle, modifier = u_controls.r, key = u_controls.n3 };
