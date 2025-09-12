@@ -247,6 +247,10 @@ local u_invulnerability = false
 local function u_invulnerability_toggle()
 	u_invulnerability = not u_invulnerability
 	turn_invulnerable(LOCAL_PLAYER)
+
+	local max_hp = get_max_hit_points(LOCAL_PLAYER)
+	set_current_hit_points(LOCAL_PLAYER, max_hp)
+
 	u_show_help_text("Invulnerability seems to be " .. (u_invulnerability and "Enabled" or "Disabled"))
 end
 
