@@ -36,6 +36,7 @@ local u_teleports_list = {
 	{ display_name = "Gateway - Henry Steel Mills", x = -303.231, y = -887.995, z = 4.790 },
 	{ display_name = "Gateway - Loren Square", x = 45.482, y = -42.570, z = 11.900 },
 	{ display_name = "Gateway - Sunset Park", x = 40.008, y = 673.332, z = 7.833 },
+	{ display_name = "Gateway - under Sunset Park", x = 39.0, y = 622.0, z = -87.0 },
 	{ display_name = "Gateway - Yearwood", x = 1498.986, y = 590.451, z = 40.213 },
 	{ display_name = "(DLC1) 3 Count Crib - Inside", x = 1203.540, y = 1450.141, z = 228.156, city_zones = { "dlc1_3s", "dlc1_3c" } },
 	{ display_name = "(DLC1) 3 Count Crib - Outside", x = 1200.829, y = 1342.975, z = 24.193, city_zones = { "dlc1_3s", "dlc1_3c" } },
