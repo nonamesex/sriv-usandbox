@@ -23,6 +23,7 @@ local u_controls = {
 	["n8"] = "CBA_GAC_WEAPON_SELECT_8";
 	["ctrl"] = "CBA_OFC_CROUCH";
 	["e"] = "CBA_GAC_ACTION";
+	["r"] = "CBA_OFC_PICKUP_RELOAD";
 }
 
 local u_teleports_list = {
