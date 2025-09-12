@@ -382,8 +382,8 @@ local u_keybinds = {
 	{ handler = u_free_camera_toggle, modifier = u_controls.ctrl, key = u_controls.n2 };
 	{ handler = u_invulnerability_toggle, modifier = u_controls.ctrl, key = u_controls.n3 };
 	{ handler = u_super_attacks_toggle, modifier = u_controls.ctrl, key = u_controls.n5 };
-	{ handler = u_super_cooldown_toggle, modifier = u_controls.ctrl, key = u_controls.n6 };
-	{ handler = u_super_movement_toggle, modifier = u_controls.ctrl, key = u_controls.n7 };
+	{ handler = u_super_movement_toggle, modifier = u_controls.ctrl, key = u_controls.n6 };
+	{ handler = u_super_cooldown_toggle, modifier = u_controls.ctrl, key = u_controls.n7 };
 	{ handler = u_game_speed_cycle, modifier = u_controls.e, key = u_controls.n1, args = { false } };
 	{ handler = u_game_speed_cycle, modifier = u_controls.e, key = u_controls.n2, args = { true } };
 	{ handler = u_teleports_cycle, modifier = u_controls.e, key = u_controls.n3, args = { false } };
