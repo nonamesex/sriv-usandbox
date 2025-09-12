@@ -389,7 +389,6 @@ function u_sandbox_thread()
 end
 
 local function u_sandbox_main()
-	show_location(true)
 	u_show_help_text("Welcome")
 	thread_new("u_sandbox_thread")
 end
