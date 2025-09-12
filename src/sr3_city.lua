@@ -134,6 +134,9 @@ local u_tod_list = {
 	"dlc1_m03_tod_override";
 	"dlc1_m04_tod_override";
 	"dlc1_m05_tod_override";
+	"dlc2_m01_tod_override";
+	"dlc2_m02_tod_override";
+	"dlc2_m03_tod_override";
 }
 
 ---@param msg string
