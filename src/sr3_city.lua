@@ -244,6 +244,17 @@ local function u_notoriety_toggle()
 	u_show_help_text("Notoriety " .. (u_notoriety and "Enabled" or "Disabled"))
 end
 
+local function u_notoriety_cycle(forward)
+	if not u_notoriety then
+		u_notoriety_toggle()
+	end
+
+	local notoriety_level = notoriety_get("police")
+	notoriety_level = u_cycle_number(notoriety_level, 0, 6, forward, false)
+
+	notoriety_set("police", notoriety_level)
+end
+
 local u_free_camera = false
 local function u_free_camera_toggle()
 	u_free_camera = not u_free_camera
@@ -352,7 +363,6 @@ local u_keybinds = {
 	{ handler = u_fix_char_vehicle, modifier = u_controls.ctrl, key = u_controls.n1 };
 	{ handler = u_free_camera_toggle, modifier = u_controls.ctrl, key = u_controls.n2 };
 	{ handler = u_invulnerability_toggle, modifier = u_controls.ctrl, key = u_controls.n3 };
-	{ handler = u_notoriety_toggle, modifier = u_controls.ctrl, key = u_controls.n4 };
 	{ handler = u_super_attacks_toggle, modifier = u_controls.ctrl, key = u_controls.n5 };
 	{ handler = u_super_cooldown_toggle, modifier = u_controls.ctrl, key = u_controls.n6 };
 	{ handler = u_super_movement_toggle, modifier = u_controls.ctrl, key = u_controls.n7 };
@@ -363,6 +373,9 @@ local u_keybinds = {
 	{ handler = u_teleports_tp, modifier = u_controls.e, key = u_controls.n5 };
 	{ handler = u_tod_cycle, modifier = u_controls.e, key = u_controls.n6, args = { false } };
 	{ handler = u_tod_cycle, modifier = u_controls.e, key = u_controls.n7, args = { true } };
+	{ handler = u_notoriety_cycle, modifier = u_controls.r, key = u_controls.n1, args = {false} };
+	{ handler = u_notoriety_cycle, modifier = u_controls.r, key = u_controls.n2, args = {true} };
+	{ handler = u_notoriety_toggle, modifier = u_controls.r, key = u_controls.n3 };
 	{ handler = u_camera_mode_cycle, modifier = u_controls.r, key = u_controls.n4, args = {false} };
 	{ handler = u_camera_mode_cycle, modifier = u_controls.r, key = u_controls.n5, args = {true} };
 }
