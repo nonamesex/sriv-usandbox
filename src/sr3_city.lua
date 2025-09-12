@@ -300,6 +300,42 @@ local function u_game_speed_cycle(forward)
 	u_show_help_text("Game " .. (u_game_speed == 0 and "Paused" or "Speed is " .. u_game_speed * 10 .. "%%"))
 end
 
+local u_camera_modes = {
+	"Crib Ship Cam";
+	"TK Rift Cam";
+	"SR1 Flashback Camera";
+	"SR2 Flashback Camera";
+	"SR3 Script Camera";
+	"M00 Time Dilation";
+	"M02 Exterior Close";
+	"M08 Decoy Plane Extreme";
+	"M08 Decoy Plane final";
+	"M08 Decoy Plane mid";
+	"M09 Nearby Roof";
+	"M11 Air Duct Crouch";
+	"SR3 M00 Combat Cam";
+	"SR3 M02 Script Camera";
+	"SR3 M03 Crawl Cam";
+	"SR3 M06 Team Select";
+}
+local u_camera_mode_current = 0
+local function u_camera_mode_cycle(forward)
+	u_camera_mode_current = u_cycle_number(u_camera_mode_current, 0, #u_camera_modes, forward, false)
+
+	local mode_name = u_camera_modes[u_camera_mode_current] or "Camera Mode Reset"
+	local mode_count = u_camera_mode_current .. "/" .. #u_camera_modes .. "\n"
+
+	camera_script_disable(SYNC_LOCAL)
+
+	thread_yield()
+
+	if u_camera_mode_current ~= 0 then
+		camera_script_enable(mode_name, SYNC_LOCAL)
+	end
+
+	u_show_help_text(mode_count .. mode_name, 1.5)
+end
+
 local u_keybinds = {
 	{ handler = u_fix_char_vehicle, modifier = u_controls.ctrl, key = u_controls.n1 };
 	{ handler = u_free_camera_toggle, modifier = u_controls.ctrl, key = u_controls.n2 };
@@ -315,6 +351,8 @@ local u_keybinds = {
 	{ handler = u_teleports_tp, modifier = u_controls.e, key = u_controls.n5 };
 	{ handler = u_tod_cycle, modifier = u_controls.e, key = u_controls.n6, args = { false } };
 	{ handler = u_tod_cycle, modifier = u_controls.e, key = u_controls.n7, args = { true } };
+	{ handler = u_camera_mode_cycle, modifier = u_controls.r, key = u_controls.n4, args = {false} };
+	{ handler = u_camera_mode_cycle, modifier = u_controls.r, key = u_controls.n5, args = {true} };
 }
 
 function u_sandbox_thread()
