@@ -231,7 +231,7 @@ local function u_notoriety_toggle()
 	if u_notoriety then
 		notoriety_reset("police")
 	else
-		notoriety_set_max("police", 0.1)
+		notoriety_set_max("police", 0)
 	end
 	u_show_help_text("Notoriety " .. (u_notoriety and "Enabled" or "Disabled"))
 end
