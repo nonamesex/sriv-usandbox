@@ -187,13 +187,16 @@ local function u_cycle_number(value, min, max, forward, clamp)
 end
 
 local function u_tod_cycle(forward)
-	u_tod_current = u_cycle_number(u_tod_current, 1, #u_tod_list, forward, false)
+	u_tod_current = u_cycle_number(u_tod_current, 0, #u_tod_list, forward, false)
 
-	local tod_name = u_tod_list[u_tod_current]
+	local tod_name = u_tod_list[u_tod_current] or "TOD Reset"
 	local tod_count = u_tod_current .. "/" .. #u_tod_list .. "\n"
 
 	mission_override_clear_all_temp()
-	mission_override_push_temp(tod_name .. ".todx")
+
+	if u_tod_current ~= 0 then
+		mission_override_push_temp(tod_name .. ".todx")
+	end
 
 	u_show_help_text(tod_count .. tod_name, 1.0)
 end
