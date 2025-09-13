@@ -377,6 +377,44 @@ local function u_camera_mode_cycle(forward)
 	u_show_help_text(mode_count .. mode_name, 1.5)
 end
 
+local u_spawn_category_current = 0
+local u_spawn_categories = {
+	{ display_name = "Clone Army", category = "m14_clonearmy", notoriety = "m14 Clone Army" };
+	{ display_name = "Glitched", category = "sp_cat_ForbiddenZone", notoriety = "survival_glitched" };
+	{ display_name = "Pleasantville", category = "sp_cat_Pleasantville", notoriety = "m02 Pleasant Police" };
+	{ display_name = "Hoes", category = "sp_cat_Cheat_Ho", notoriety = "survival_bikers" };
+	{ display_name = "Mascots", category = "sp_cat_Cheat_Mascot", notoriety = "mascots" };
+	{ display_name = "Zombies", category = "sp_cat_Cheat_Zombie" };
+}
+local function u_spawn_category_cycle(forward)
+	u_spawn_category_current = u_cycle_number(u_spawn_category_current, 0, #u_spawn_categories, forward, false)
+
+	local spawn_info = u_spawn_categories[u_spawn_category_current]
+
+	local category_name = "Spawn Category Reset"
+	local category_count = u_spawn_category_current .. "/" .. #u_spawn_categories .. "\n"
+
+	notoriety_disable_custom_spawning()
+	spawn_global_override_clear_category()
+
+	world_despawn_all_pedestrians()
+	world_despawn_all_vehicles()
+
+	thread_yield()
+
+	if u_spawn_category_current > 0 then
+		category_name = spawn_info.display_name
+
+		if spawn_info.notoriety then
+			notoriety_enable_custom_spawning(spawn_info.notoriety)
+		end
+
+		spawn_global_override_set_category(spawn_info.category)
+	end
+
+	u_show_help_text(category_count .. category_name, 1)
+end
+
 local u_keybinds = {
 	{ handler = u_fix_char_vehicle, modifier = u_controls.ctrl, key = u_controls.n1 };
 	{ handler = u_free_camera_toggle, modifier = u_controls.ctrl, key = u_controls.n2 };
@@ -398,6 +436,9 @@ local u_keybinds = {
 	{ handler = u_notoriety_toggle, modifier = u_controls.r, key = u_controls.n3 };
 	{ handler = u_camera_mode_cycle, modifier = u_controls.r, key = u_controls.n4, args = {false} };
 	{ handler = u_camera_mode_cycle, modifier = u_controls.r, key = u_controls.n5, args = {true} };
+	{ handler = u_spawn_category_cycle, modifier = u_controls.r, key = u_controls.n6, args = {false} };
+	{ handler = u_spawn_category_cycle, modifier = u_controls.r, key = u_controls.n7, args = {true} };
+	
 }
 
 function u_sandbox_thread()
