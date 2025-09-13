@@ -1,4 +1,4 @@
---- Saints Row IV μSandBox ---
+--- sriv_legacy μSandBox ---
 
 local u_controls = {
 	["insert"] = "CBA_VDC_OFFHAND_GRENADE";
@@ -277,7 +277,6 @@ local u_free_camera = false
 local function u_free_camera_toggle()
 	u_free_camera = not u_free_camera
 	slew_mode(u_free_camera)
-	-- u_show_help_text("Free camera " .. (u_free_camera and "Enabled" or "Disabled"))
 end
 
 local u_invulnerability = false
@@ -346,7 +345,6 @@ local u_camera_modes = {
 	"TK Rift Cam";
 	"SR1 Flashback Camera";
 	"SR2 Flashback Camera";
-	"SR3 Script Camera";
 	"M00 Time Dilation";
 	"M02 Exterior Close";
 	"M08 Decoy Plane Extreme";
@@ -358,6 +356,7 @@ local u_camera_modes = {
 	"SR3 M02 Script Camera";
 	"SR3 M03 Crawl Cam";
 	"SR3 M06 Team Select";
+	"SR3 Script Camera";
 }
 local u_camera_mode_current = 0
 local function u_camera_mode_cycle(forward)
@@ -419,9 +418,9 @@ local u_keybinds = {
 	{ handler = u_fix_char_vehicle, modifier = u_controls.ctrl, key = u_controls.n1 };
 	{ handler = u_free_camera_toggle, modifier = u_controls.ctrl, key = u_controls.n2 };
 	{ handler = u_invulnerability_toggle, modifier = u_controls.ctrl, key = u_controls.n3 };
-	{ handler = u_super_attacks_toggle, modifier = u_controls.ctrl, key = u_controls.n5 };
-	{ handler = u_super_movement_toggle, modifier = u_controls.ctrl, key = u_controls.n6 };
-	{ handler = u_super_cooldown_toggle, modifier = u_controls.ctrl, key = u_controls.n7 };
+	{ handler = u_super_attacks_toggle, modifier = u_controls.ctrl, key = u_controls.n4 };
+	{ handler = u_super_movement_toggle, modifier = u_controls.ctrl, key = u_controls.n5 };
+	{ handler = u_super_cooldown_toggle, modifier = u_controls.ctrl, key = u_controls.n6 };
 	{ handler = u_game_speed_cycle, modifier = u_controls.e, key = u_controls.n1, args = { false } };
 	{ handler = u_game_speed_cycle, modifier = u_controls.e, key = u_controls.n2, args = { true } };
 	{ handler = u_teleports_cycle, modifier = u_controls.e, key = u_controls.n3, args = { false } };
@@ -431,14 +430,13 @@ local u_keybinds = {
 	{ handler = u_tod_cycle, modifier = u_controls.e, key = u_controls.n7, args = { true } };
 	{ handler = u_weather_cycle, modifier = u_controls.r, key = u_controls.n6, args = { false } };
 	{ handler = u_weather_cycle, modifier = u_controls.r, key = u_controls.n7, args = { true } };
-	{ handler = u_notoriety_cycle, modifier = u_controls.r, key = u_controls.n1, args = {false} };
-	{ handler = u_notoriety_cycle, modifier = u_controls.r, key = u_controls.n2, args = {true} };
+	{ handler = u_notoriety_cycle, modifier = u_controls.r, key = u_controls.n1, args = { false } };
+	{ handler = u_notoriety_cycle, modifier = u_controls.r, key = u_controls.n2, args = { true } };
 	{ handler = u_notoriety_toggle, modifier = u_controls.r, key = u_controls.n3 };
-	{ handler = u_camera_mode_cycle, modifier = u_controls.r, key = u_controls.n4, args = {false} };
-	{ handler = u_camera_mode_cycle, modifier = u_controls.r, key = u_controls.n5, args = {true} };
-	{ handler = u_spawn_category_cycle, modifier = u_controls.r, key = u_controls.n6, args = {false} };
-	{ handler = u_spawn_category_cycle, modifier = u_controls.r, key = u_controls.n7, args = {true} };
-	
+	{ handler = u_camera_mode_cycle, modifier = u_controls.r, key = u_controls.n4, args = { false } };
+	{ handler = u_camera_mode_cycle, modifier = u_controls.r, key = u_controls.n5, args = { true } };
+	{ handler = u_spawn_category_cycle, modifier = u_controls.r, key = u_controls.n6, args = { false } };
+	{ handler = u_spawn_category_cycle, modifier = u_controls.r, key = u_controls.n7, args = { true } };
 }
 
 function u_sandbox_thread()
