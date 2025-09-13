@@ -1,29 +1,45 @@
 --- sriv_legacy μSandBox ---
 
 local u_controls = {
-	["insert"] = "CBA_VDC_OFFHAND_GRENADE";
-	["delete"] = "CBA_GAC_CANCEL_ACTIVITY";
-	["home"] = "CBA_WRECKER_EXTEND_CORD";
-	["end"] = "CBA_VDC_WATERCRAFT_FIRE_SECONDARY";
-	["pgup"] = "CBA_WRECKER_RETRACT_CORD";
-	["pgdn"] = "CBA_OFC_DEBUG_PRATFALL";
-	["up"] = "CBA_TOW_TRUCK_RELEASE_VEHICLE";
-	["down"] = "CBA_TOW_TRUCK_TOWING_RIGHT";
-	["left"] = "CBA_TOW_TRUCK_TOWING_LEFT";
-	["right"] = "CBA_SKYDIVE_DIVE";
-	["bracketl"] = "CBA_FIGHT_CLUB_BLOCK";
-	["bracketr"] = "CBA_MP_SCOREBOARD";
-	["n1"] = "CBA_GAC_WEAPON_SELECT_1";
-	["n2"] = "CBA_GAC_WEAPON_SELECT_2";
-	["n3"] = "CBA_GAC_WEAPON_SELECT_3";
-	["n4"] = "CBA_GAC_WEAPON_SELECT_4";
-	["n5"] = "CBA_GAC_WEAPON_SELECT_5";
-	["n6"] = "CBA_GAC_WEAPON_SELECT_6";
-	["n7"] = "CBA_GAC_WEAPON_SELECT_7";
-	["n8"] = "CBA_GAC_WEAPON_SELECT_8";
-	["ctrl"] = "CBA_OFC_CROUCH";
-	["e"] = "CBA_GAC_ACTION";
-	["r"] = "CBA_OFC_PICKUP_RELOAD";
+	KEY_1 = "CBA_GAC_WEAPON_SELECT_1";
+	KEY_2 = "CBA_GAC_WEAPON_SELECT_2";
+	KEY_3 = "CBA_GAC_WEAPON_SELECT_3";
+	KEY_4 = "CBA_GAC_WEAPON_SELECT_4";
+	KEY_5 = "CBA_GAC_WEAPON_SELECT_5";
+	KEY_6 = "CBA_GAC_WEAPON_SELECT_6";
+	KEY_7 = "CBA_GAC_WEAPON_SELECT_7";
+	KEY_8 = "CBA_GAC_WEAPON_SELECT_8";
+	KEY_C = "CBA_OFC_TAUNT_THREE";
+	KEY_E = "CBA_GAC_ACTION";
+	KEY_F = "CBA_OFC_MELEE_NUT_SHOT";
+	KEY_N = "CBA_VDC_SCAN";
+	KEY_Q = "CBA_OFC_ATTACK_SECONDARY";
+	KEY_R = "CBA_OFC_PICKUP_RELOAD";
+	KEY_S = "CBA_VDC_BRAKE_REVERSE";
+	KEY_T = "CBA_MENU_PC_TEXT_CHAT";
+	KEY_V = "CBA_MENU_PC_PUSH_TO_TALK";
+	KEY_W = "CBA_VDC_ACCELERATE";
+	KEY_X = "CBA_OFC_TAUNT_TWO";
+	KEY_Z = "CBA_GAC_RECRUIT_DISMISS";
+	KEY_COMMA = "CBA_GAC_PREV_RADIO";
+	KEY_PERIOD = "CBA_GAC_NEXT_RADIO";
+	KEY_TAB = "CBA_GAC_MAP_MENU";
+	KEY_ESC = "CBA_GAC_PAUSE_MENU";
+	KEY_F1 = "CBA_SUPER_QUICK_FREEZE";
+	KEY_F2 = "CBA_SUPER_QUICK_TELEKINESIS";
+	KEY_F3 = "CBA_SUPER_QUICK_STOMP";
+	KEY_F4 = "CBA_SUPER_QUICK_ENERGY_BLAST";
+	KEY_F10 = "CBA_GAC_MACHINIMA_QUICKSAVE";
+	KEY_F11 = "CBA_GAC_TAKE_SCREENSHOT";
+	KEY_LEFT_CTRL = "CBA_OFC_CROUCH";
+	KEY_LEFT_SHIFT = "CBA_OFC_SPRINT";
+	KEY_LEFT_ALT = "CBA_VDC_BIKE_LEAN_BACK";
+	KEY_SPACEBAR = "CBA_OFC_JUMP_CLIMB";
+	MOUSE_LEFT = "CBA_OFC_ATTACK_PRIMARY";
+	MOUSE_MIDDLE = "CBA_VDC_SUPER_POWERS";
+	MOUSE_RIGHT = "CBA_OFC_MELEE_POWER_ATTACK";
+	MOUSE_WHEEL_UP = "CBA_GAC_WEAPON_SWITCH_CW";
+	MOUSE_WHEEL_DOWN = "CBA_GAC_WEAPON_SWITCH_CCW";
 }
 
 local u_teleports_list = {
@@ -415,28 +431,28 @@ local function u_spawn_category_cycle(forward)
 end
 
 local u_keybinds = {
-	{ handler = u_fix_char_vehicle, modifier = u_controls.ctrl, key = u_controls.n1 };
-	{ handler = u_free_camera_toggle, modifier = u_controls.ctrl, key = u_controls.n2 };
-	{ handler = u_invulnerability_toggle, modifier = u_controls.ctrl, key = u_controls.n3 };
-	{ handler = u_super_attacks_toggle, modifier = u_controls.ctrl, key = u_controls.n4 };
-	{ handler = u_super_movement_toggle, modifier = u_controls.ctrl, key = u_controls.n5 };
-	{ handler = u_super_cooldown_toggle, modifier = u_controls.ctrl, key = u_controls.n6 };
-	{ handler = u_game_speed_cycle, modifier = u_controls.e, key = u_controls.n1, args = { false } };
-	{ handler = u_game_speed_cycle, modifier = u_controls.e, key = u_controls.n2, args = { true } };
-	{ handler = u_teleports_cycle, modifier = u_controls.e, key = u_controls.n3, args = { false } };
-	{ handler = u_teleports_cycle, modifier = u_controls.e, key = u_controls.n4, args = { true } };
-	{ handler = u_teleports_tp, modifier = u_controls.e, key = u_controls.n5 };
-	{ handler = u_tod_cycle, modifier = u_controls.e, key = u_controls.n6, args = { false } };
-	{ handler = u_tod_cycle, modifier = u_controls.e, key = u_controls.n7, args = { true } };
-	{ handler = u_weather_cycle, modifier = u_controls.r, key = u_controls.n6, args = { false } };
-	{ handler = u_weather_cycle, modifier = u_controls.r, key = u_controls.n7, args = { true } };
-	{ handler = u_notoriety_cycle, modifier = u_controls.r, key = u_controls.n1, args = { false } };
-	{ handler = u_notoriety_cycle, modifier = u_controls.r, key = u_controls.n2, args = { true } };
-	{ handler = u_notoriety_toggle, modifier = u_controls.r, key = u_controls.n3 };
-	{ handler = u_camera_mode_cycle, modifier = u_controls.r, key = u_controls.n4, args = { false } };
-	{ handler = u_camera_mode_cycle, modifier = u_controls.r, key = u_controls.n5, args = { true } };
-	{ handler = u_spawn_category_cycle, modifier = u_controls.r, key = u_controls.n6, args = { false } };
-	{ handler = u_spawn_category_cycle, modifier = u_controls.r, key = u_controls.n7, args = { true } };
+	{ handler = u_fix_char_vehicle, modifier = u_controls.KEY_LEFT_CTRL, key = u_controls.KEY_1, just_press = true };
+	{ handler = u_free_camera_toggle, modifier = u_controls.KEY_LEFT_CTRL, key = u_controls.KEY_2, just_press = true };
+	{ handler = u_invulnerability_toggle, modifier = u_controls.KEY_LEFT_CTRL, key = u_controls.KEY_3, just_press = true };
+	{ handler = u_super_attacks_toggle, modifier = u_controls.KEY_LEFT_CTRL, key = u_controls.KEY_4, just_press = true };
+	{ handler = u_super_movement_toggle, modifier = u_controls.KEY_LEFT_CTRL, key = u_controls.KEY_5, just_press = true };
+	{ handler = u_super_cooldown_toggle, modifier = u_controls.KEY_LEFT_CTRL, key = u_controls.KEY_6, just_press = true };
+	{ handler = u_game_speed_cycle, modifier = u_controls.KEY_E, key = u_controls.KEY_1, just_press = true, args = { false } };
+	{ handler = u_game_speed_cycle, modifier = u_controls.KEY_E, key = u_controls.KEY_2, just_press = true, args = { true } };
+	{ handler = u_teleports_cycle, modifier = u_controls.KEY_E, key = u_controls.KEY_3, just_press = true, args = { false } };
+	{ handler = u_teleports_cycle, modifier = u_controls.KEY_E, key = u_controls.KEY_4, just_press = true, args = { true } };
+	{ handler = u_teleports_tp, modifier = u_controls.KEY_E, key = u_controls.KEY_5, just_press = true };
+	{ handler = u_tod_cycle, modifier = u_controls.KEY_E, key = u_controls.KEY_6, just_press = true, args = { false } };
+	{ handler = u_tod_cycle, modifier = u_controls.KEY_E, key = u_controls.KEY_7, just_press = true, args = { true } };
+	{ handler = u_weather_cycle, modifier = u_controls.KEY_R, key = u_controls.KEY_6, just_press = true, args = { false } };
+	{ handler = u_weather_cycle, modifier = u_controls.KEY_R, key = u_controls.KEY_7, just_press = true, args = { true } };
+	{ handler = u_notoriety_cycle, modifier = u_controls.KEY_R, key = u_controls.KEY_1, just_press = true, args = { false } };
+	{ handler = u_notoriety_cycle, modifier = u_controls.KEY_R, key = u_controls.KEY_2, just_press = true, args = { true } };
+	{ handler = u_notoriety_toggle, modifier = u_controls.KEY_R, key = u_controls.KEY_3, just_press = true };
+	{ handler = u_camera_mode_cycle, modifier = u_controls.KEY_R, key = u_controls.KEY_4, just_press = true, args = { false } };
+	{ handler = u_camera_mode_cycle, modifier = u_controls.KEY_R, key = u_controls.KEY_5, just_press = true, args = { true } };
+	{ handler = u_spawn_category_cycle, modifier = u_controls.KEY_R, key = u_controls.KEY_6, just_press = true, args = { false } };
+	{ handler = u_spawn_category_cycle, modifier = u_controls.KEY_R, key = u_controls.KEY_7, just_press = true, args = { true } };
 }
 
 function u_sandbox_thread()
@@ -446,20 +462,26 @@ function u_sandbox_thread()
 			keybinds[v.modifier] = {}
 		end
 
-		keybinds[v.modifier][v.key] = { handler = v.handler, args = v.args }
+		if not keybinds[v.modifier][v.just_press] then
+			keybinds[v.modifier][v.just_press] = {}
+		end
+
+		keybinds[v.modifier][v.just_press][v.key] = { handler = v.handler, args = v.args }
 	end
 
 	u_show_help_text("Thread Created", 10.0)
 
 	while true do
-		for modifier, keys in pairs(keybinds) do
+		for modifier, binds in pairs(keybinds) do
 			if player_action_is_pressed(modifier) then
-				for key, command in pairs(keys) do
-					if player_action_just_pressed(key) then
-						if command.args and #command.args > 0 then
-							command.handler(unpack(command.args))
-						else
-							command.handler()
+				for just_press, keys in pairs(binds) do
+					for key, command in pairs(keys) do
+						if (just_press and player_action_just_pressed(key)) or (not just_press and player_action_is_pressed(key)) then
+							if command.args and #command.args > 0 then
+								command.handler(unpack(command.args))
+							else
+								command.handler()
+							end
 						end
 					end
 				end
