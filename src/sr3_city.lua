@@ -228,6 +228,177 @@ local function u_tod_cycle(forward)
 	u_show_help_text(tod_count .. tod_name, 1.0)
 end
 
+local u_lut_current = 0
+local u_lut_names = {
+	"lut_2d";
+	"lut_3count";
+	"lut_alienzone_night";
+	"lut_alienzone_noon";
+	"lut_andyc";
+	"lut_bandw";
+	"lut_blue_pd";
+	"lut_bluenight";
+	"lut_bodega";
+	"lut_church";
+	"lut_classicday";
+	"lut_coda";
+	"lut_comp_temp";
+	"lut_completion_screen";
+	"lut_crib_kinzies";
+	"lut_crib_saintshq";
+	"lut_crib_sbfa";
+	"lut_crib_stronghold";
+	"lut_crib_zimos";
+	"lut_cribship";
+	"lut_cto_night";
+	"lut_cto_noon";
+	"lut_damage";
+	"lut_death";
+	"lut_default";
+	"lut_dlc1genki";
+	"lut_dlc2_m03";
+	"lut_ff";
+	"lut_ffa";
+	"lut_friendlyfire";
+	"lut_gat_loyalty";
+	"lut_genki";
+	"lut_genkie16";
+	"lut_grayscale";
+	"lut_iad";
+	"lut_infraredday";
+	"lut_inverse";
+	"lut_kinzieware";
+	"lut_leap";
+	"lut_leatherlace";
+	"lut_letspretend";
+	"lut_m00";
+	"lut_m00_n";
+	"lut_m00desert";
+	"lut_m01_bank";
+	"lut_m01";
+	"lut_m02_cargo";
+	"lut_m02_cell";
+	"lut_m02";
+	"lut_m03_armory";
+	"lut_m03_cargo";
+	"lut_m03_mothership";
+	"lut_m03";
+	"lut_m04";
+	"lut_m05";
+	"lut_m05_saintshq";
+	"lut_m06_clone";
+	"lut_m06";
+	"lut_m06_tower";
+	"lut_m07_angels";
+	"lut_m07_in";
+	"lut_m07_pc";
+	"lut_m08_nightmare";
+	"lut_m08";
+	"lut_m08_saintshq";
+	"lut_m08cargoa";
+	"lut_m08ontrack";
+	"lut_m09";
+	"lut_m10";
+	"lut_m10_strip";
+	"lut_m11";
+	"lut_m11out";
+	"lut_m12";
+	"lut_m12_prcenter";
+	"lut_m13";
+	"lut_m14";
+	"lut_m14_tvstudio";
+	"lut_m14out";
+	"lut_m15_mothership";
+	"lut_m15";
+	"lut_m16_new";
+	"lut_m16";
+	"lut_m17_carrier";
+	"lut_m17_pc";
+	"lut_m17";
+	"lut_m18_cargo";
+	"lut_m18";
+	"lut_m18lobby";
+	"lut_m19";
+	"lut_m20";
+	"lut_m21_murderbrawl";
+	"lut_m21";
+	"lut_m22";
+	"lut_m23";
+	"lut_m24_movieset";
+	"lut_m24";
+	"lut_modernday";
+	"lut_night";
+	"lut_night02";
+	"lut_nm_dark";
+	"lut_nm_moon";
+	"lut_noir";
+	"lut_nolove";
+	"lut_noon";
+	"lut_noon02";
+	"lut_noon03";
+	"lut_ontrack";
+	"lut_orangenight";
+	"lut_pinkposter";
+	"lut_planetsaints";
+	"lut_pleasant";
+	"lut_poc2m07";
+	"lut_pville_start";
+	"lut_red";
+	"lut_rednight";
+	"lut_riftleap1";
+	"lut_rifstspeed1";
+	"lut_trifttk01";
+	"lut_rimjobs";
+	"lut_rustys";
+	"lut_saintrix1";
+	"lut_saintrix2";
+	"lut_saintrix3";
+	"lut_schindler";
+	"lut_senate";
+	"lut_sepia";
+	"lut_sh01";
+	"lut_sh01_powder";
+	"lut_sh02_bdsm";
+	"lut_sh02";
+	"lut_sh03_nuke";
+	"lut_sh03";
+	"lut_sh04_3count";
+	"lut_sh04";
+	"lut_shillelagh";
+	"lut_sjacks";
+	"lut_smilingjacks";
+	"lut_soultrain";
+	"lut_sr35_alienterritory";
+	"lut_sr35_m01";
+	"lut_sr35_warden";
+	"lut_stamp";
+	"lut_style01";
+	"lut_style02";
+	"lut_style03";
+	"lut_sunrise";
+	"lut_sunset";
+	"lut_synboardroom";
+	"lut_syngarage";
+	"lut_techlegal";
+	"lut_trainingtod";
+	"lut_turdferguson";
+	"lut_vintageday";
+	"lut_violetnight";
+	"lut_warden_night";
+	"lut_warden_noon";
+	"lut_wh;"
+}
+local function u_lut_cycle(forward)
+	u_lut_current = u_cycle_number(u_lut_current, 1, #u_lut_names, forward, false)
+
+	local lut_name = u_lut_names[u_lut_current]
+	local lut_count = u_lut_current .. "/" .. #u_lut_names .. "\n"
+
+	lut_load(lut_name)
+
+	u_show_help_text(lut_count .. lut_name, 1.0)
+end
+
 local u_super_attacks = true
 local function u_super_attacks_toggle()
 	u_super_attacks = not u_super_attacks
@@ -432,6 +603,8 @@ local u_keybinds = {
 	{ handler = u_teleports_tp, modifier = u_controls.KEY_E, key = u_controls.KEY_5, just_press = true };
 	{ handler = u_tod_cycle, modifier = u_controls.KEY_E, key = u_controls.KEY_6, just_press = true, args = { false } };
 	{ handler = u_tod_cycle, modifier = u_controls.KEY_E, key = u_controls.KEY_7, just_press = true, args = { true } };
+	{ handler = u_lut_cycle, modifier = u_controls.KEY_V, key = u_controls.KEY_6, just_press = true, args = { false } };
+	{ handler = u_lut_cycle, modifier = u_controls.KEY_V, key = u_controls.KEY_7, just_press = true, args = { true } };
 	{ handler = u_notoriety_cycle, modifier = u_controls.KEY_R, key = u_controls.KEY_1, just_press = true, args = { false } };
 	{ handler = u_notoriety_cycle, modifier = u_controls.KEY_R, key = u_controls.KEY_2, just_press = true, args = { true } };
 	{ handler = u_notoriety_toggle, modifier = u_controls.KEY_R, key = u_controls.KEY_3, just_press = true };
