@@ -271,8 +271,8 @@ local u_lut_names = {
 	"lut_leap";
 	"lut_leatherlace";
 	"lut_letspretend";
-	"lut_m00";
 	"lut_m00_n";
+	"lut_m00";
 	"lut_m00desert";
 	"lut_m01_bank";
 	"lut_m01";
@@ -284,29 +284,29 @@ local u_lut_names = {
 	"lut_m03_mothership";
 	"lut_m03";
 	"lut_m04";
-	"lut_m05";
 	"lut_m05_saintshq";
+	"lut_m05";
 	"lut_m06_clone";
-	"lut_m06";
 	"lut_m06_tower";
+	"lut_m06";
 	"lut_m07_angels";
 	"lut_m07_in";
 	"lut_m07_pc";
 	"lut_m08_nightmare";
-	"lut_m08";
 	"lut_m08_saintshq";
+	"lut_m08";
 	"lut_m08cargoa";
 	"lut_m08ontrack";
 	"lut_m09";
-	"lut_m10";
 	"lut_m10_strip";
+	"lut_m10";
 	"lut_m11";
 	"lut_m11out";
-	"lut_m12";
 	"lut_m12_prcenter";
+	"lut_m12";
 	"lut_m13";
-	"lut_m14";
 	"lut_m14_tvstudio";
+	"lut_m14";
 	"lut_m14out";
 	"lut_m15_mothership";
 	"lut_m15";
@@ -345,9 +345,8 @@ local u_lut_names = {
 	"lut_pville_start";
 	"lut_red";
 	"lut_rednight";
-	"lut_riftleap1";
 	"lut_rifstspeed1";
-	"lut_trifttk01";
+	"lut_riftleap1";
 	"lut_rimjobs";
 	"lut_rustys";
 	"lut_saintrix1";
@@ -356,8 +355,8 @@ local u_lut_names = {
 	"lut_schindler";
 	"lut_senate";
 	"lut_sepia";
-	"lut_sh01";
 	"lut_sh01_powder";
+	"lut_sh01";
 	"lut_sh02_bdsm";
 	"lut_sh02";
 	"lut_sh03_nuke";
@@ -381,12 +380,13 @@ local u_lut_names = {
 	"lut_syngarage";
 	"lut_techlegal";
 	"lut_trainingtod";
+	"lut_trifttk01";
 	"lut_turdferguson";
 	"lut_vintageday";
 	"lut_violetnight";
 	"lut_warden_night";
 	"lut_warden_noon";
-	"lut_wh;"
+	"lut_wh";
 }
 local function u_lut_cycle(forward)
 	u_lut_current = u_cycle_number(u_lut_current, 1, #u_lut_names, forward, false)
