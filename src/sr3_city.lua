@@ -589,6 +589,19 @@ local function u_spawn_category_cycle(forward)
 	u_show_help_text(category_count .. category_name, 1)
 end
 
+local u_hud_state = nil
+local function u_hide_hud_toggle()
+	if u_hud_state == nil then
+		u_hud_state = hud_display_create_state()
+		hud_display_set_element(u_hud_state, HUD_ALL_ELEM, HUD_FADE_HIDDEN)
+		hud_display_set_element(u_hud_state, HUD_ELEM_TUTORIAL_HELP, HUD_FADE_VISIBLE)
+		hud_display_commit_state(u_hud_state)
+	else
+		hud_display_remove_state(u_hud_state)
+		u_hud_state = nil
+	end
+end
+
 local u_keybinds = {
 	{ handler = u_fix_char_vehicle, modifier = u_controls.KEY_LEFT_CTRL, key = u_controls.KEY_1, just_press = true };
 	{ handler = u_free_camera_toggle, modifier = u_controls.KEY_LEFT_CTRL, key = u_controls.KEY_2, just_press = true };
@@ -612,6 +625,7 @@ local u_keybinds = {
 	{ handler = u_camera_mode_cycle, modifier = u_controls.KEY_R, key = u_controls.KEY_5, just_press = true, args = { true } };
 	{ handler = u_spawn_category_cycle, modifier = u_controls.KEY_R, key = u_controls.KEY_6, just_press = true, args = { false } };
 	{ handler = u_spawn_category_cycle, modifier = u_controls.KEY_R, key = u_controls.KEY_7, just_press = true, args = { true } };
+	{ handler = u_hide_hud_toggle, modifier = u_controls.KEY_R, key = u_controls.KEY_8, just_press = true };
 }
 
 function u_sandbox_thread()
