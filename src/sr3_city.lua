@@ -128,6 +128,7 @@ local u_tod_list = {
 	"m18_tod_override";
 	"modern_tod_override";
 	"mothership_tod_override";
+	"neutral_light";
 	"nightmare_dark_tod_override";
 	"nm_02out_tod_override";
 	"nm_cheat_tod_override";
@@ -152,9 +153,14 @@ local u_tod_list = {
 	"dlc1_m03_tod_override";
 	"dlc1_m04_tod_override";
 	"dlc1_m05_tod_override";
+	"dlc2_gnw_tod_override";
 	"dlc2_m01_tod_override";
+	"dlc2_m01day_tod_override";
 	"dlc2_m02_tod_override";
+	"dlc2_m02shadow_tod_override";
 	"dlc2_m03_tod_override";
+	"dlc2_m03b_tod_override";
+	"dlc2_m03cin_tod_override";
 }
 
 ---@param msg string
