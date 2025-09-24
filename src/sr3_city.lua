@@ -493,12 +493,28 @@ end
 local u_invulnerability = false
 local function u_invulnerability_toggle()
 	u_invulnerability = not u_invulnerability
-	turn_invulnerable(LOCAL_PLAYER)
 
 	local max_hp = get_max_hit_points(LOCAL_PLAYER)
 	set_current_hit_points(LOCAL_PLAYER, max_hp)
 
-	u_show_help_text("Invulnerability seems to be " .. (u_invulnerability and "Enabled" or "Disabled"))
+	if u_invulnerability then
+		turn_invulnerable(LOCAL_PLAYER)
+	else
+		turn_vulnerable(LOCAL_PLAYER)
+	end
+
+	character_allow_ragdoll(LOCAL_PLAYER, not u_invulnerability)
+	character_prevent_bumping(LOCAL_PLAYER, u_invulnerability)
+	character_prevent_explosion_fling(LOCAL_PLAYER, u_invulnerability)
+	character_prevent_flinching(LOCAL_PLAYER, u_invulnerability)
+	character_prevent_kneecapping(LOCAL_PLAYER, u_invulnerability)
+	character_set_damage_multiplier(LOCAL_PLAYER, u_invulnerability and 0.0 or 1.0)
+	character_set_never_catch_fire(LOCAL_PLAYER, u_invulnerability)
+	character_set_never_fall(LOCAL_PLAYER, u_invulnerability)
+	character_set_no_explosive_panic(LOCAL_PLAYER, u_invulnerability)
+	character_set_no_satchel_panic(LOCAL_PLAYER, u_invulnerability)
+
+	u_show_help_text("Invulnerability " .. (u_invulnerability and "Enabled" or "Disabled"))
 end
 
 local u_teleports_current = 0
