@@ -228,6 +228,43 @@ local function u_tod_cycle(forward)
 	u_show_help_text(tod_count .. tod_name, 1.0)
 end
 
+local u_hour, u_minute = 7, 0
+local function u_time_cycle(forward)
+	if forward then
+		u_minute = u_minute + 1
+		if u_minute > 59 then
+			u_minute = 0
+			u_hour = u_hour + 1
+			if u_hour > 23 then
+				u_hour = 0
+			end
+		end
+	else
+		u_minute = u_minute - 1
+		if 0 > u_minute then
+			u_minute = 59
+			u_hour = u_hour - 1
+			if 0 > u_hour then
+				u_hour = 23
+			end
+		end
+	end
+	set_time_of_day(u_hour, u_minute, 0, 0)
+	thread_yield()
+end
+
+local u_dynamic_tod = false
+local function u_dynamic_tod_toggle()
+	u_dynamic_tod = not u_dynamic_tod
+
+	dynamic_tod_enable(u_dynamic_tod)
+
+	u_show_help_text("Dynamic TOD " .. (u_dynamic_tod and "Enabled" or "Disabled"))
+
+	u_tod_cycle(true)
+	u_tod_cycle(false)
+end
+
 local u_lut_current = 0
 local u_lut_names = {
 	"lut_2d";
@@ -626,6 +663,9 @@ local u_keybinds = {
 	{ handler = u_spawn_category_cycle, modifier = u_controls.KEY_R, key = u_controls.KEY_6, just_press = true, args = { false } };
 	{ handler = u_spawn_category_cycle, modifier = u_controls.KEY_R, key = u_controls.KEY_7, just_press = true, args = { true } };
 	{ handler = u_hide_hud_toggle, modifier = u_controls.KEY_R, key = u_controls.KEY_8, just_press = true };
+	{ handler = u_time_cycle, modifier = u_controls.KEY_V, key = u_controls.KEY_1, just_press = false, args = { false } };
+	{ handler = u_time_cycle, modifier = u_controls.KEY_V, key = u_controls.KEY_2, just_press = false, args = { true } };
+	{ handler = u_dynamic_tod_toggle, modifier = u_controls.KEY_V, key = u_controls.KEY_3, just_press = true };
 }
 
 function u_sandbox_thread()
