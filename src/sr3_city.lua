@@ -459,7 +459,6 @@ local function u_fix_char_vehicle()
 	if character_is_in_vehicle(LOCAL_PLAYER) then
 		local vehicle = get_char_vehicle_name(LOCAL_PLAYER)
 		vehicle_repair(vehicle)
-		-- audio_object_post_event("VEHICLE_REPAIR", nil, nil, LOCAL_PLAYER)
 	end
 end
 
