@@ -260,9 +260,6 @@ local function u_dynamic_tod_toggle()
 	dynamic_tod_enable(u_dynamic_tod)
 
 	u_show_help_text("Dynamic TOD " .. (u_dynamic_tod and "Enabled" or "Disabled"))
-
-	u_tod_cycle(true)
-	u_tod_cycle(false)
 end
 
 local u_lut_current = 0
