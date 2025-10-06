@@ -163,12 +163,15 @@ local u_tod_list = {
 	"dlc2_m03cin_tod_override";
 }
 
+local u_message_handle = nil
 ---@param msg string
 ---@param duration number Duration in seconds. Can be float value.
 local function u_show_help_text(msg, duration)
-	message_remove_all()
-	thread_yield()
-	message("[format][color:blue]uSandBox[/format]: " .. msg, duration or 2.0, false, SYNC_LOCAL, 0)
+	if u_message_handle ~= nil then
+		message_remove(u_message_handle, false)
+	end
+
+	u_message_handle = message("[format][color:blue]uSandBox[/format]: " .. msg, duration or 2.0, false, SYNC_LOCAL, 0)
 end
 
 ---@param x number
