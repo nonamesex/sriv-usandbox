@@ -660,18 +660,18 @@ local u_keybinds = {
 	{ handler = u_super_cooldown_toggle, modifier = u_controls.KEY_LEFT_CTRL, key = u_controls.KEY_6, just_press = true };
 	{ handler = u_game_speed_cycle, modifier = u_controls.KEY_E, key = u_controls.KEY_1, just_press = true, args = { false } };
 	{ handler = u_game_speed_cycle, modifier = u_controls.KEY_E, key = u_controls.KEY_2, just_press = true, args = { true } };
-	{ handler = u_teleports_cycle, modifier = u_controls.KEY_E, key = u_controls.KEY_3, just_press = true, args = { false } };
-	{ handler = u_teleports_cycle, modifier = u_controls.KEY_E, key = u_controls.KEY_4, just_press = true, args = { true } };
+	{ handler = u_teleports_cycle, modifier = u_controls.KEY_E, key = u_controls.KEY_3, just_press = false, wait = 100, args = { false } };
+	{ handler = u_teleports_cycle, modifier = u_controls.KEY_E, key = u_controls.KEY_4, just_press = false, wait = 100, args = { true } };
 	{ handler = u_teleports_tp, modifier = u_controls.KEY_E, key = u_controls.KEY_5, just_press = true };
-	{ handler = u_tod_cycle, modifier = u_controls.KEY_E, key = u_controls.KEY_6, just_press = true, args = { false } };
-	{ handler = u_tod_cycle, modifier = u_controls.KEY_E, key = u_controls.KEY_7, just_press = true, args = { true } };
-	{ handler = u_lut_cycle, modifier = u_controls.KEY_V, key = u_controls.KEY_6, just_press = true, args = { false } };
-	{ handler = u_lut_cycle, modifier = u_controls.KEY_V, key = u_controls.KEY_7, just_press = true, args = { true } };
+	{ handler = u_tod_cycle, modifier = u_controls.KEY_E, key = u_controls.KEY_6, just_press = false, wait = 100, args = { false } };
+	{ handler = u_tod_cycle, modifier = u_controls.KEY_E, key = u_controls.KEY_7, just_press = false, wait = 100, args = { true } };
+	{ handler = u_lut_cycle, modifier = u_controls.KEY_V, key = u_controls.KEY_6, just_press = false, wait = 100, args = { false } };
+	{ handler = u_lut_cycle, modifier = u_controls.KEY_V, key = u_controls.KEY_7, just_press = false, wait = 100, args = { true } };
 	{ handler = u_notoriety_cycle, modifier = u_controls.KEY_R, key = u_controls.KEY_1, just_press = true, args = { false } };
 	{ handler = u_notoriety_cycle, modifier = u_controls.KEY_R, key = u_controls.KEY_2, just_press = true, args = { true } };
 	{ handler = u_notoriety_toggle, modifier = u_controls.KEY_R, key = u_controls.KEY_3, just_press = true };
-	{ handler = u_camera_mode_cycle, modifier = u_controls.KEY_R, key = u_controls.KEY_4, just_press = true, args = { false } };
-	{ handler = u_camera_mode_cycle, modifier = u_controls.KEY_R, key = u_controls.KEY_5, just_press = true, args = { true } };
+	{ handler = u_camera_mode_cycle, modifier = u_controls.KEY_R, key = u_controls.KEY_4, just_press = false, wait = 200, args = { false } };
+	{ handler = u_camera_mode_cycle, modifier = u_controls.KEY_R, key = u_controls.KEY_5, just_press = false, wait = 200, args = { true } };
 	{ handler = u_spawn_category_cycle, modifier = u_controls.KEY_R, key = u_controls.KEY_6, just_press = true, args = { false } };
 	{ handler = u_spawn_category_cycle, modifier = u_controls.KEY_R, key = u_controls.KEY_7, just_press = true, args = { true } };
 	{ handler = u_hide_hud_toggle, modifier = u_controls.KEY_R, key = u_controls.KEY_8, just_press = true };
@@ -691,7 +691,7 @@ function u_sandbox_thread()
 			keybinds[v.modifier][v.just_press] = {}
 		end
 
-		keybinds[v.modifier][v.just_press][v.key] = { handler = v.handler, args = v.args }
+		keybinds[v.modifier][v.just_press][v.key] = { handler = v.handler, args = v.args, wait = v.wait }
 	end
 
 	u_show_help_text("Thread Created", 10.0)
@@ -706,6 +706,10 @@ function u_sandbox_thread()
 								command.handler(unpack(command.args))
 							else
 								command.handler()
+							end
+
+							if not just_press and command.wait and command.wait > 0 then
+								delay(command.wait / 1000)
 							end
 						end
 					end
