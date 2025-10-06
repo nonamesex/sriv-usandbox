@@ -168,7 +168,7 @@ local u_tod_list = {
 local function u_show_help_text(msg, duration)
 	message_remove_all()
 	thread_yield()
-	message("[format][color:blue]uSandBox[/format]: " .. msg, duration or 2.0, false, SYNC_ALL)
+	message("[format][color:blue]uSandBox[/format]: " .. msg, duration or 2.0, false, SYNC_ALL, 0)
 end
 
 ---@param x number
